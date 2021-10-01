@@ -59,14 +59,38 @@ searchBtn.addEventListener('click', function(){
   var enteredTxt = document.getElementById('input').value;
   // push data into the empty array (seachedCities)
   searchedCities.push(enteredTxt);
-  console.log("searched: "+ searchedCities)
+  // console.log("searched: "+ searchedCities)
   // console.log(enteredTxt);
   localStorage.setItem("Cities Searched", searchedCities);
-  // append those searched to the HTML page
-  
+  searchHistory();
 });
 
 
+var historyContainer = document.getElementById('history');
+// console.log(historyContainer);
+// append those searched to the HTML page
+
+function searchHistory(){
+    var historyBtn = document.createElement('button');
+    var enteredTxt = document.getElementById('input').value;
+    console.log(historyBtn);
+    historyBtn.setAttribute('class','btn btn-secondary btn-lg');
+    historyBtn.setAttribute('type','button');
+    historyBtn.textContent = enteredTxt;
+    historyContainer.append(historyBtn);
+}
+
+
+// function searchHistory(){
+//   for (let i = 0; i < searchedCities.length; i++) {
+//     console.log(searchedCities[i]);
+//     var historyBtn = document.createElement('button')
+//     console.log(historyBtn);
+//     historyBtn.setAttribute('class','btn btn-secondary btn-lg')
+//     historyBtn.setAttribute('type','button')
+//     historyContainer.append(historyBtn);
+//   }
+// }
 
 
 
