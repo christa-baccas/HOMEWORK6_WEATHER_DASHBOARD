@@ -39,24 +39,18 @@
     <!-- search bar -->
     <div class="container">
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-lg-3">
           <p class="h2">Search for a City:</p>
-            <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="Enter City">
+            <input id="input" type="text" class="form-control form-control-lg my-input" id="colFormLabelLg" placeholder="Enter City">
             <div class="d-grid gap-2 col mx-auto">
-              <button class="btn btn-primary col" type="button">Search</button>
+              <button class="btn btn-primary col"  id="search" type="button">Search</button>
             </div>
         </div>
+        <div class="col-lg-3">
+          <div id="currentWeather"></div>
+          <div id="forecast"></div>
+        </div>
       </div>
-
-        <div class="container">
-          <div class="row">
-            <div class="col">col</div>
-            <div class="col">col</div>
-            <div class="col">col</div>
-            <div class="col">col</div>
-          </div>
-      </div>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
