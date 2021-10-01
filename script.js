@@ -4,6 +4,7 @@ var currentWeatherContainer = document.getElementById('currentWeather');
 function getApi() {
   // the input value being searched
   var city = document.getElementById('input').value;
+  // console.log(city);
   // Api that gives lat and lon when a city is entered
   var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=bbb2958c4a7e079d6061f61d0fb13c44`; 
   // fetch calls the API
@@ -39,12 +40,50 @@ function oneCallApi(data){
 }
 
 function renderCurrentWeather(currentWeather){
-  console.log(currentWeather);
+  // console.log(currentWeather);
 }
 
 function renderForecast(forecast){
-  console.log(forecast)
+  // console.log(forecast)
 }
 
 // when search button is clicked the getAPI function will run
 searchBtn.onclick = getApi;
+
+//store searches in an array to local storage
+var searchedCities = [];
+
+
+searchBtn.addEventListener('click', function(){
+  // city that is entered in the search box
+  var enteredTxt = document.getElementById('input').value;
+  // push data into the empty array (seachedCities)
+  searchedCities.push(enteredTxt);
+  console.log("searched: "+ searchedCities)
+  // console.log(enteredTxt);
+  localStorage.setItem("Cities Searched", searchedCities);
+  // append those searched to the HTML page
+  
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // a loop thourgh to get the stored data to be on the textare on refresh
+// textArea.each(function(){
+
+//   var storedData = $(this).parent().attr('id');
+//   // console.log(storedData);
+//   // console.log(localStorage.getItem(storedData));
+//   var showTxt = localStorage.getItem(storedData);
+//   $(this).val(showTxt);
+// });
