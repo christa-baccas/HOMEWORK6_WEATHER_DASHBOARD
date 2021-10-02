@@ -35,34 +35,37 @@ function oneCallApi(data){
     return response.json()
     //date is then being read
   }).then(function (data){
-    renderCurrentWeather(data.current)
-    renderForecast(data.daily)
+    console.log(data);
+    renderCurrentWeather(data.current);
+    renderForecast(data.daily);
   })
 }
 
 function renderCurrentWeather(currentWeather){
+  console.log(currentWeather);
   var temp = document.querySelector('.card-temp');
   var humidity = document.querySelector('.card-humidity');
   var wind = document.querySelector('.card-wind');
   var uvi = document.querySelector('.card-uvi');
   var mainWeather = document.getElementById('mainWeather');
   mainWeather.setAttribute('style', 'border: 2px solid black');
-
   temp.textContent = "Temp: " + currentWeather.temp + " \u00B0 F";
   humidity.textContent = "Humidity: " + currentWeather.humidity + " %";
   wind.textContent = "Wind: " + currentWeather.wind_speed + " MPH";
   uvi.textContent = "UV Index: " + currentWeather.uvi;
+
+  // current date
+  var currentDate = moment().format('L');
+  console.log(currentDate);
+
+  // sets the header of the current weather to the city being searched
+  var enteredTxt = document.getElementById('input').value;
+  var cardTitle = document.querySelector('.card-title');
+  cardTitle.setAttribute
+  cardTitle.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1) + " " +currentDate;
 }
 
 function renderForecast(forecast){
-  // var temp = document.querySelector('.card-temp');
-  // var humidity = document.querySelector('.card-humidity');
-  // var wind = document.querySelector('.card-wind');
-  // var uvi = document.querySelector('.card-uvi');
-  // temp.textContent = "Temp: " + currentWeather.temp;
-  // humidity.textContent = "Humidity: " + currentWeather.humidity;
-  // wind.textContent = "Wind: " + currentWeather.wind_speed;
-  // uvi.textContent = "UVI: " + currentWeather.uvi;
 }
 
 // when search button is clicked the getAPI function will run
@@ -87,11 +90,10 @@ searchBtn.addEventListener('click', function(){
 
 // this append those searched cities to the HTML page
 function searchHistory(){
-    var historyBtn = document.createElement('button');
+    var searchBtn = document.createElement('button');
     var enteredTxt = document.getElementById('input').value;
-    console.log(historyBtn);
-    historyBtn.setAttribute('class','btn btn-secondary btn-lg col');
-    historyBtn.setAttribute('type','button');
-    historyBtn.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);;
-    historyContainer.append(historyBtn);
+    searchBtn.setAttribute('class','btn btn-secondary btn-lg col');
+    searchBtn.setAttribute('type','button');
+    searchBtn.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);;
+    historyContainer.append(searchBtn);
 }
