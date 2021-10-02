@@ -85,9 +85,9 @@ function renderForecast(forecast) {
     var cardTemp = document.querySelector('.card-temp');
     var cardWind = document.querySelector('.card-wind');
     var cardhumidity = document.querySelector('.card-humidity');
-    cardTemp.textContent = "Temp: " + forecast.temp + " \u00B0 F";
-    cardWind.textContent = "Wind: " + forecast.wind_speed + " MPH";  
-    cardhumidity.textContent = "Humidity: " + forecast.humidity + " %";
+    cardTemp.textContent = "Temp: " + forecast[i].temp.day + " \u00B0 F";
+    cardWind.textContent = "Wind: " + forecast[i].wind_speed + " MPH";  
+    cardhumidity.textContent = "Humidity: " + forecast[i].humidity + " %";
   }
 }   
 
