@@ -76,34 +76,34 @@ function renderCurrentWeather(currentWeather) {
 
 
   function renderForecast(forecast) {
-    console.log(forecast[0].dt);
-
+ 
       var cardContainer = document.getElementById('card-group');
       cardContainer.innerHTML = "";
+
 
     for (let i = 1; i < 6; i++) {
       var iconCode = forecast[i].weather[0].icon;
 
       var card = document.createElement('div')
-      card.setAttribute('class', 'card')
+      card.setAttribute('class', 'card text-white bg-dark m-2');
   
-      var cardBody = document.createElement('div')
-      cardBody.setAttribute('class', 'card-body')
+      var cardBody = document.createElement('div');
+      cardBody.setAttribute('class', 'card-body p-2');
   
-      var cardDate = document.createElement('h5')
-      cardDate.setAttribute('class', 'card-date')
+      var cardDate = document.createElement('h5');
+      cardDate.setAttribute('class', 'card-date p-2');
 
       var icon = document.createElement('img');
       icon.setAttribute("src", "http://openweathermap.org/img/w/"+ iconCode +".png");
 
-      var cardTemp = document.createElement('p')
-      cardTemp.setAttribute('class', 'card-temp')
+      var cardTemp = document.createElement('p');
+      cardTemp.setAttribute('class', 'card-temp p-2');
   
-      var cardWind = document.createElement('p')
-      cardWind.setAttribute('class', 'card-wind')
+      var cardWind = document.createElement('p');
+      cardWind.setAttribute('class', 'card-wind p-2');
   
-      var cardHumidity = document.createElement('p')
-      cardHumidity.setAttribute('class', 'card-humidity')
+      var cardHumidity = document.createElement('p');
+      cardHumidity.setAttribute('class', 'card-humidity p-2');
       
   
       cardContainer.append(card);
@@ -137,12 +137,8 @@ searchBtn.onclick = getApi;
 
 
 searchBtn.addEventListener("click", function () {
-  // city that is entered in the search box
   var enteredTxt = document.getElementById("input").value;
-  // push data into the empty array (seachedCities)
   searchedCities.push(enteredTxt);
-  // console.log("searched: "+ searchedCities)
-  // console.log(enteredTxt);
   localStorage.setItem("Cities Searched", searchedCities);
   searchHistory();
 });
@@ -156,4 +152,25 @@ function searchHistory() {
   searchBtn.setAttribute("type", "button");
   searchBtn.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);
   historyContainer.append(searchBtn);
+}
+
+
+function savedCities() {
+  var initialInput = document.getElementById("input").value.trim();
+  // console.log(initialInput)
+
+  // getting the highScore key
+  var cityData = JSON.parse(localStorage.getItem("Cities Searched")) || [];
+  console.log(cityData);
+
+  var saveData = {
+    temp: timeLeft,
+    wind: initialInput,
+    humidity: score,
+    icon: 
+  }
+  // //adds data the the newScore variable
+  // scores.push(newScore);
+  // // sets the highScore key
+  // localStorage.setItem("highScore", JSON.stringify(scores));
 }

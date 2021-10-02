@@ -63,7 +63,7 @@
           </div>
         </div>
         <div id="mainWeather" class="col-lg-8">
-          <div class="card-body" id="currentWeather">
+          <div class="card-body p-0" id="currentWeather">
             <h3 id="icon" class="card-title" style="font-size: 25px; font-weight: bold"></h3>
             <p class="card-temp p-2"></p>
             <p class="card-wind p-2"></p>
@@ -76,7 +76,9 @@
     <div class="container-fluid">
       <div id="forecast" class="row mt-2">
         <div id="history" class="col-lg-3 pt-3"></div>
-        <div id="card-group" class="card-group col-8"></div>
+        <div id="card-group" class="card-group col-8">
+          <div id="forecast-header"></div>
+        </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
