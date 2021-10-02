@@ -1,6 +1,7 @@
 var searchBtn = document.getElementById("search");
 var currentWeatherContainer = document.getElementById("currentWeather");
 var historyContainer = document.getElementById("history");
+var searchedCities = [];
 
 function getApi() {
   // the input value being searched
@@ -64,72 +65,65 @@ function renderCurrentWeather(currentWeather) {
   var cardTitle = document.querySelector(".card-title");
   // cardTitle.setAttribute;
   cardTitle.textContent = enteredTxt.charAt(0).toUpperCase() +enteredTxt.slice(1) + " " + currentDate;
+  
+  // add the weather icon for current day
+  var iconcode = currentWeather.weather[0].icon;
+  var iconContainer = document.getElementById('icon');
+  var icon = document.createElement('img');
+  icon.setAttribute("src", "http://openweathermap.org/img/w/"+ iconcode +".png");
+  iconContainer.append(icon);
 }
 
-  //   //icon display
-  // // var iconurl = `http://openweathermap.org/img/w/${iconcode}.png`;
-  // var iconcode = currentWeather.weather[0].icon;
-  // var iconContainer = document.getElementById('icon');
-  // var icon = document.createElement('img');
-  // icon.setAttribute("src", "http://openweathermap.org/img/w/"+ iconcode +".png");
-  // iconContainer.append(icon);
-  // // icon.append(iconurl);
 
+  function renderForecast(forecast) {
+      var cardContainer = document.getElementById('card-group');
+      cardContainer.innerHTML = "";
 
-// forecast for the next 5 days
-// function renderForecast(forecast) {
-//   console.log(forecast);
+    for (let i = 1; i < 6; i++) {
+      var iconCode = forecast[i].weather[0].icon;
 
-//   for (let i = 1; i < 6; i++) {
-//     var cardDate = document.getElementById('card-date');
-//     var cardTemp = document.getElementById('card-temp');
-//     var cardWind = document.getElementById('card-wind');
-//     var cardhumidity = document.getElementById('card-humidity');
-//     
-//   }
-// }   
-function renderForecast(forecast) {
-  console.log(forecast);
-  for (let i = 1; i < 6; i++) {
-    var card = document.createElement('div')
-    card.setAttribute('class', 'card')
+      var card = document.createElement('div')
+      card.setAttribute('class', 'card')
+  
+      var cardBody = document.createElement('div')
+      cardBody.setAttribute('class', 'card-body')
+  
+      var cardDate = document.createElement('h5')
+      cardDate.setAttribute('class', 'card-date')
 
-    var cardBody = document.createElement('div')
-    cardBody.setAttribute('class', 'card-body')
+      var icon = document.createElement('img');
+      icon.setAttribute("src", "http://openweathermap.org/img/w/"+ iconCode +".png");
 
-    var cardDate = document.createElement('h5')
-    cardDate.setAttribute('class', 'card-date')
+      var cardTemp = document.createElement('p')
+      cardTemp.setAttribute('class', 'card-temp')
+  
+      var cardWind = document.createElement('p')
+      cardWind.setAttribute('class', 'card-wind')
+  
+      var cardHumidity = document.createElement('p')
+      cardHumidity.setAttribute('class', 'card-humidity')
+      
+  
+      cardContainer.append(card);
+      card.append(cardBody);
+      cardBody.append(cardDate);
+      cardBody.append(icon);
+      cardBody.append(cardTemp);
+      cardBody.append(cardWind);
+      cardBody.append(cardHumidity);
+      
+      cardDate.textContent = moment()
+      cardTemp.textContent = "Temp: " + forecast[i].temp.day + " \u00B0 F";
+      cardWind.textContent = "Wind: " + forecast[i].wind_speed + " MPH";  
+      cardHumidity.textContent = "Humidity: " + forecast[i].humidity + " %";
 
-    var cardTemp = document.createElement('p')
-    cardTemp.setAttribute('class', 'card-temp')
-
-    var cardWind = document.createElement('p')
-    cardWind.setAttribute('class', 'card-wind')
-
-    var cardHumidity = document.createElement('p')
-    cardHumidity.setAttribute('class', 'card-humidity')
-
-    var cardContainer = document.getElementById('card-group');
-    cardContainer.append(card);
-    card.append(cardBody);
-    cardBody.append(cardDate);
-    cardBody.append(cardTemp);
-    cardBody.append(cardWind);
-    cardBody.append(cardHumidity);
-
-    cardTemp.textContent = "Temp: " + forecast[i].temp.day + " \u00B0 F";
-    cardWind.textContent = "Wind: " + forecast[i].wind_speed + " MPH";  
-    cardHumidity.textContent = "Humidity: " + forecast[i].humidity + " %";
-  }
-}   
-
+    }
+  } 
 
 
 // when search button is clicked the getAPI function will run
 searchBtn.onclick = getApi;
 
-//store searches in an array to local storage
-var searchedCities = [];
 
 searchBtn.addEventListener("click", function () {
   // city that is entered in the search box
