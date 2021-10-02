@@ -77,19 +77,52 @@ function renderCurrentWeather(currentWeather) {
 
 
 // forecast for the next 5 days
+// function renderForecast(forecast) {
+//   console.log(forecast);
+
+//   for (let i = 1; i < 6; i++) {
+//     var cardDate = document.getElementById('card-date');
+//     var cardTemp = document.getElementById('card-temp');
+//     var cardWind = document.getElementById('card-wind');
+//     var cardhumidity = document.getElementById('card-humidity');
+//     
+//   }
+// }   
 function renderForecast(forecast) {
   console.log(forecast);
-
   for (let i = 1; i < 6; i++) {
-    var cardDate = document.querySelector('.card-date');
-    var cardTemp = document.querySelector('.card-temp');
-    var cardWind = document.querySelector('.card-wind');
-    var cardhumidity = document.querySelector('.card-humidity');
+    var card = document.createElement('div')
+    card.setAttribute('class', 'card')
+
+    var cardBody = document.createElement('div')
+    cardBody.setAttribute('class', 'card-body')
+
+    var cardDate = document.createElement('h5')
+    cardDate.setAttribute('class', 'card-date')
+
+    var cardTemp = document.createElement('p')
+    cardTemp.setAttribute('class', 'card-temp')
+
+    var cardWind = document.createElement('p')
+    cardWind.setAttribute('class', 'card-wind')
+
+    var cardHumidity = document.createElement('p')
+    cardHumidity.setAttribute('class', 'card-humidity')
+
+    var cardContainer = document.getElementById('card-group');
+    cardContainer.append(card);
+    card.append(cardBody);
+    cardBody.append(cardDate);
+    cardBody.append(cardTemp);
+    cardBody.append(cardWind);
+    cardBody.append(cardHumidity);
+
     cardTemp.textContent = "Temp: " + forecast[i].temp.day + " \u00B0 F";
     cardWind.textContent = "Wind: " + forecast[i].wind_speed + " MPH";  
-    cardhumidity.textContent = "Humidity: " + forecast[i].humidity + " %";
+    cardHumidity.textContent = "Humidity: " + forecast[i].humidity + " %";
   }
 }   
+
 
 
 // when search button is clicked the getAPI function will run
