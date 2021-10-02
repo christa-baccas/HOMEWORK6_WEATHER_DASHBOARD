@@ -1,5 +1,6 @@
 var searchBtn = document.getElementById('search');
 var currentWeatherContainer = document.getElementById('currentWeather');
+var historyContainer = document.getElementById('history');
 
 function getApi() {
   // the input value being searched
@@ -40,11 +41,28 @@ function oneCallApi(data){
 }
 
 function renderCurrentWeather(currentWeather){
-  // console.log(currentWeather);
+  var temp = document.querySelector('.card-temp');
+  var humidity = document.querySelector('.card-humidity');
+  var wind = document.querySelector('.card-wind');
+  var uvi = document.querySelector('.card-uvi');
+  var mainWeather = document.getElementById('mainWeather');
+  mainWeather.setAttribute('style', 'border: 2px solid black');
+
+  temp.textContent = "Temp: " + currentWeather.temp + " \u00B0 F";
+  humidity.textContent = "Humidity: " + currentWeather.humidity + " %";
+  wind.textContent = "Wind: " + currentWeather.wind_speed + " MPH";
+  uvi.textContent = "UV Index: " + currentWeather.uvi;
 }
 
 function renderForecast(forecast){
-  // console.log(forecast)
+  // var temp = document.querySelector('.card-temp');
+  // var humidity = document.querySelector('.card-humidity');
+  // var wind = document.querySelector('.card-wind');
+  // var uvi = document.querySelector('.card-uvi');
+  // temp.textContent = "Temp: " + currentWeather.temp;
+  // humidity.textContent = "Humidity: " + currentWeather.humidity;
+  // wind.textContent = "Wind: " + currentWeather.wind_speed;
+  // uvi.textContent = "UVI: " + currentWeather.uvi;
 }
 
 // when search button is clicked the getAPI function will run
@@ -65,49 +83,15 @@ searchBtn.addEventListener('click', function(){
   searchHistory();
 });
 
-
-var historyContainer = document.getElementById('history');
 // console.log(historyContainer);
-// append those searched to the HTML page
 
+// this append those searched cities to the HTML page
 function searchHistory(){
     var historyBtn = document.createElement('button');
     var enteredTxt = document.getElementById('input').value;
     console.log(historyBtn);
-    historyBtn.setAttribute('class','btn btn-secondary btn-lg');
+    historyBtn.setAttribute('class','btn btn-secondary btn-lg col');
     historyBtn.setAttribute('type','button');
-    historyBtn.textContent = enteredTxt;
+    historyBtn.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);;
     historyContainer.append(historyBtn);
 }
-
-
-// function searchHistory(){
-//   for (let i = 0; i < searchedCities.length; i++) {
-//     console.log(searchedCities[i]);
-//     var historyBtn = document.createElement('button')
-//     console.log(historyBtn);
-//     historyBtn.setAttribute('class','btn btn-secondary btn-lg')
-//     historyBtn.setAttribute('type','button')
-//     historyContainer.append(historyBtn);
-//   }
-// }
-
-
-
-
-
-
-
-
-
-
-
-// // a loop thourgh to get the stored data to be on the textare on refresh
-// textArea.each(function(){
-
-//   var storedData = $(this).parent().attr('id');
-//   // console.log(storedData);
-//   // console.log(localStorage.getItem(storedData));
-//   var showTxt = localStorage.getItem(storedData);
-//   $(this).val(showTxt);
-// });

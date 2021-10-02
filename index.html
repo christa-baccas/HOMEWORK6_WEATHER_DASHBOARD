@@ -28,25 +28,33 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text d-flex justify-content-center">
       <div class="container-md">
-        <a class="navbar-brand" href="#">Weather Dashboard</a>
+        <p class="navbar-brand w-100">Weather Dashboard</p>
       </div>
     </nav>
     <!-- search bar -->
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-lg-3">
           <p class="h2">Search for a City:</p>
             <input id="input" type="text" class="form-control form-control-lg my-input" placeholder="Enter City">
-            <div class="d-grid gap-2 col mx-auto">
-              <button class="btn btn-primary col"  id="search" type="button">Search</button>
+            <div class="d-grid gap-2 col mx-auto  border-bottom">
+              <button class="btn btn-primary col" id="search" type="button">Search</button>
             </div>
-            <div id="history">
-            </div>
+            <div id="history"></div>
         </div>
-        <div class="col-lg-3">
-          <div id="currentWeather"></div>
+        <div id="mainWeather"class="col-lg-8">
+            <div class="card-body" id="currentWeather">
+              <h5 class="card-title  p-2"></h5>
+              <p class="card-temp  p-2"></p>
+              <p class="card-wind  p-2"></p>
+              <p class="card-humidity  p-2"></p>
+              <p class="card-uvi  p-2"></p>
+            </div>
+          </div>
+
+          </div>
           <div id="forecast"></div>
         </div>
       </div>
