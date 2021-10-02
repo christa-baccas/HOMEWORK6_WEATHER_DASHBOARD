@@ -36,14 +36,14 @@ function oneCallApi(data) {
       //date is then being read
     })
     .then(function (data) {
-      console.log(data);
+      // console.log(data);
       renderCurrentWeather(data.current);
       renderForecast(data.daily);
     });
 }
 
 function renderCurrentWeather(currentWeather) {
-  console.log(currentWeather);
+  // console.log(currentWeather);
   var temp = document.querySelector(".card-temp");
   var humidity = document.querySelector(".card-humidity");
   var wind = document.querySelector(".card-wind");
@@ -55,7 +55,7 @@ function renderCurrentWeather(currentWeather) {
   wind.textContent = "Wind: " + currentWeather.wind_speed + " MPH";
   uvi.textContent = "UV Index: " + currentWeather.uvi;
 
-  // current date
+  // today's date
   var currentDate = moment().format("L");
   // console.log(currentDate);
 
@@ -66,9 +66,31 @@ function renderCurrentWeather(currentWeather) {
   cardTitle.textContent = enteredTxt.charAt(0).toUpperCase() +enteredTxt.slice(1) + " " + currentDate;
 }
 
-function renderForecast(forecast) {
+  //   //icon display
+  // // var iconurl = `http://openweathermap.org/img/w/${iconcode}.png`;
+  // var iconcode = currentWeather.weather[0].icon;
+  // var iconContainer = document.getElementById('icon');
+  // var icon = document.createElement('img');
+  // icon.setAttribute("src", "http://openweathermap.org/img/w/"+ iconcode +".png");
+  // iconContainer.append(icon);
+  // // icon.append(iconurl);
 
-}
+
+// forecast for the next 5 days
+function renderForecast(forecast) {
+  console.log(forecast);
+
+  for (let i = 1; i < 6; i++) {
+    var cardDate = document.querySelector('.card-date');
+    var cardTemp = document.querySelector('.card-temp');
+    var cardWind = document.querySelector('.card-wind');
+    var cardhumidity = document.querySelector('.card-humidity');
+    cardTemp.textContent = "Temp: " + forecast.temp + " \u00B0 F";
+    cardWind.textContent = "Wind: " + forecast.wind_speed + " MPH";  
+    cardhumidity.textContent = "Humidity: " + forecast.humidity + " %";
+  }
+}   
+
 
 // when search button is clicked the getAPI function will run
 searchBtn.onclick = getApi;
@@ -87,13 +109,12 @@ searchBtn.addEventListener("click", function () {
   searchHistory();
 });
 
-// console.log(historyContainer);
 
 // this append those searched cities to the HTML page
 function searchHistory() {
   var searchBtn = document.createElement("button");
   var enteredTxt = document.getElementById("input").value;
-  searchBtn.setAttribute("class", "btn btn-secondary btn-lg col");
+  searchBtn.setAttribute("class", "btn btn-secondary btn-lg col mb-2");
   searchBtn.setAttribute("type", "button");
   searchBtn.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);
   historyContainer.append(searchBtn);
