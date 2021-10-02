@@ -76,6 +76,8 @@ function renderCurrentWeather(currentWeather) {
 
 
   function renderForecast(forecast) {
+    console.log(forecast[0].dt);
+
       var cardContainer = document.getElementById('card-group');
       cardContainer.innerHTML = "";
 
@@ -112,7 +114,16 @@ function renderCurrentWeather(currentWeather) {
       cardBody.append(cardWind);
       cardBody.append(cardHumidity);
       
-      cardDate.textContent = moment()
+      var days = [];
+      var daysRequired = 6;
+    
+      for (let i = 0; i <= daysRequired; i++) {
+        days.push( moment().add(i, 'days').format('L') )
+      }
+      
+      console.log(days)
+    
+      cardDate.textContent = days[i];
       cardTemp.textContent = "Temp: " + forecast[i].temp.day + " \u00B0 F";
       cardWind.textContent = "Wind: " + forecast[i].wind_speed + " MPH";  
       cardHumidity.textContent = "Humidity: " + forecast[i].humidity + " %";
