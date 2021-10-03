@@ -155,12 +155,6 @@ function searchHistory() {
 }
 
 
-function savedCities() {
-  var initialInput = document.getElementById("input").value.trim();
-  // console.log(initialInput)
-
-  // getting the highScore key
-  var cityData = JSON.parse(localStorage.getItem("Cities Searched")) || [];
-  console.log(cityData);
-
-}
+historyContainer.addEventListener('click',function(){
+  oneCallApi(data);
+});
