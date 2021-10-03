@@ -163,14 +163,4 @@ function savedCities() {
   var cityData = JSON.parse(localStorage.getItem("Cities Searched")) || [];
   console.log(cityData);
 
-  var saveData = {
-    temp: timeLeft,
-    wind: initialInput,
-    humidity: score,
-    icon: 
-  }
-  // //adds data the the newScore variable
-  // scores.push(newScore);
-  // // sets the highScore key
-  // localStorage.setItem("highScore", JSON.stringify(scores));
 }
