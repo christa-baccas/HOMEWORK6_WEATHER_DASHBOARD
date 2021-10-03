@@ -119,9 +119,7 @@ function renderForecast(forecast) {
     for (let i = 0; i <= daysRequired; i++) {
       days.push(moment().add(i, "days").format("L"));
     }
-
-    console.log(days);
-
+    // console.log(days);
     cardDate.textContent = days[i];
     cardTemp.textContent = "Temp: " + forecast[i].temp.day + " \u00B0 F";
     cardWind.textContent = "Wind: " + forecast[i].wind_speed + " MPH";
@@ -144,15 +142,14 @@ function searchHistory() {
   var searchBtn = document.createElement("button");
   var enteredTxt = document.getElementById("input").value;
   searchBtn.setAttribute("class", "btn btn-secondary btn-lg col mb-2");
-  searchBtn.setAttribute("id", "searchBtn");
+  searchBtn.setAttribute("id", "itemBtn");
   searchBtn.setAttribute("type", "button");
   searchBtn.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);
   historyContainer.append(searchBtn);
 
-  searchBtn.addEventListener("click",function(event) {
-    // getApi(searchBtn.value);
-    var historyItem = event.target.innerHTML
-    console.log(historyItem);
-    getApi(historyItem);
-})
 }
+
+// var itemHistory = document.getElementById('itemBtn');
+// itemHistory.addEventListener('click', function(event){
+// console.log(event.target.innerHTML);
+// });
