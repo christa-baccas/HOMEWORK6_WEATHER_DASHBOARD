@@ -144,15 +144,15 @@ function searchHistory() {
   var searchBtn = document.createElement("button");
   var enteredTxt = document.getElementById("input").value;
   searchBtn.setAttribute("class", "btn btn-secondary btn-lg col mb-2");
+  searchBtn.setAttribute("id", "searchBtn");
   searchBtn.setAttribute("type", "button");
-  searchBtn.textContent =
-  enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);
+  searchBtn.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);
   historyContainer.append(searchBtn);
 
-  // searchBtn.addEventListener('click', getApi);
+  searchBtn.addEventListener("click",function(event) {
+    // getApi(searchBtn.value);
+    var historyItem = event.target.innerHTML
+    console.log(historyItem);
+    getApi(historyItem);
+})
 }
-
-
-// searchBtn.addEventListener('click', function(event){
-//   console.log(event.target.textContent);
-// })
