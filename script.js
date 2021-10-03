@@ -9,6 +9,9 @@ function getApi() {
   var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=bbb2958c4a7e079d6061f61d0fb13c44`;
   fetch(requestUrl)
     .then(function (response) {
+      if (response.status !== 200) {
+        window.alert(response.status + ": Please enter a valid city");
+      }
       return response.json();
     })
     .then(function (data) {
@@ -137,7 +140,7 @@ searchBtn.addEventListener("click", function () {
 });
 
 // this append those searched cities to the HTML page
-function searchHistory(data) {
+function searchHistory() {
   var searchBtn = document.createElement("button");
   var enteredTxt = document.getElementById("input").value;
   searchBtn.setAttribute("class", "btn btn-secondary btn-lg col mb-2");
@@ -147,8 +150,9 @@ function searchHistory(data) {
   historyContainer.append(searchBtn);
 
   // searchBtn.addEventListener('click', getApi);
-
-  searchBtn.addEventListener('click', function(event){
-    console.log(event.target.innerHTML);
-  })
 }
+
+
+// searchBtn.addEventListener('click', function(event){
+//   console.log(event.target.textContent);
+// })
