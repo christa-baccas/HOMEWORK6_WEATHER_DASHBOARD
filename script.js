@@ -146,10 +146,10 @@ function searchHistory() {
   searchBtn.setAttribute("type", "button");
   searchBtn.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);
   historyContainer.append(searchBtn);
-
 }
 
-// var itemHistory = document.getElementById('itemBtn');
-// itemHistory.addEventListener('click', function(event){
-// console.log(event.target.innerHTML);
-// });
+function history(){
+  var itemHistory = document.getElementById('itemBtn');
+  console.log(itemHistory);
+}
+history();  
