@@ -145,6 +145,10 @@ function searchHistory(data) {
   searchBtn.textContent =
   enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);
   historyContainer.append(searchBtn);
-  
-  searchBtn.addEventListener('click', getApi);
+
+  // searchBtn.addEventListener('click', getApi);
+
+  searchBtn.addEventListener('click', function(event){
+    console.log(event.target.innerHTML);
+  })
 }
