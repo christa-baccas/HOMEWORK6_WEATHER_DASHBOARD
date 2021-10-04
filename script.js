@@ -5,8 +5,6 @@ var searchedCities = [];
 var city = '';
 
 function getApi(cityName) {
-  // var city = document.getElementById("input").value;
-  // console.log(city);
   var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=bbb2958c4a7e079d6061f61d0fb13c44`;
   fetch(requestUrl)
     .then(function (response) {
@@ -55,9 +53,7 @@ function renderCurrentWeather(currentWeather) {
   // console.log(currentDate);
 
   // sets the header of the current weather to the city being searched
-  // var enteredTxt = document.getElementById("input").value;
   var cardTitle = document.querySelector(".card-title");
-  // cardTitle.setAttribute;
   cardTitle.textContent =
     city.charAt(0).toUpperCase() +
     city.slice(1) +
@@ -128,8 +124,6 @@ function renderForecast(forecast) {
   }
 }
 
-// when search button is clicked the getAPI function will run
-// searchBtn.onclick = getApi('');
 
 // this appends the searched cities to the page
 searchBtn.addEventListener("click", function () {
@@ -146,13 +140,6 @@ searchBtn.addEventListener("click", function () {
   
   getApi(city);
 });
-
-//local storage 
-// function storeCities(){
-//   localStorage.setItem("Cities Searched", JSON.stringify(searchedCities));
-//   console.log(searchedCities);
-//   // localStorage.getItem("Cities Searched", JSON.stringify(searchedCities));
-// }
 
 $('#history').on('click','.prev-search', function(){
   city = $(this).text();
