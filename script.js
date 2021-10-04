@@ -2,11 +2,12 @@ var searchBtn = document.getElementById("search");
 var currentWeatherContainer = document.getElementById("currentWeather");
 var historyContainer = document.getElementById("history");
 var searchedCities = [];
+var city = '';
 
-function getApi() {
-  var city = document.getElementById("input").value;
+function getApi(cityName) {
+  // var city = document.getElementById("input").value;
   // console.log(city);
-  var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=bbb2958c4a7e079d6061f61d0fb13c44`;
+  var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=bbb2958c4a7e079d6061f61d0fb13c44`;
   fetch(requestUrl)
     .then(function (response) {
       if (response.status !== 200) {
@@ -54,12 +55,12 @@ function renderCurrentWeather(currentWeather) {
   // console.log(currentDate);
 
   // sets the header of the current weather to the city being searched
-  var enteredTxt = document.getElementById("input").value;
+  // var enteredTxt = document.getElementById("input").value;
   var cardTitle = document.querySelector(".card-title");
   // cardTitle.setAttribute;
   cardTitle.textContent =
-    enteredTxt.charAt(0).toUpperCase() +
-    enteredTxt.slice(1) +
+    city.charAt(0).toUpperCase() +
+    city.slice(1) +
     " " +
     currentDate;
 
@@ -128,28 +129,34 @@ function renderForecast(forecast) {
 }
 
 // when search button is clicked the getAPI function will run
-searchBtn.onclick = getApi;
+// searchBtn.onclick = getApi('');
 
+// this appends the searched cities to the page
 searchBtn.addEventListener("click", function () {
-  var enteredTxt = document.getElementById("input").value;
+  city = document.getElementById("input").value;
   searchedCities.push(enteredTxt);
-  localStorage.setItem("Cities Searched", searchedCities);
-  searchHistory();
+  var itemBtn = document.createElement("button");
+  var enteredTxt = document.getElementById("input").value;
+  itemBtn.setAttribute("class", "btn btn-secondary btn-lg col mb-2 prev-search");
+  // itemBtn.setAttribute("id", "itemBtn");
+  itemBtn.setAttribute("type", "button");
+  itemBtn.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);
+  historyContainer.append(itemBtn);
+  localStorage.setItem("Cities Searched", JSON.stringify(searchedCities));
+  
+  getApi(city);
 });
 
-// this append those searched cities to the HTML page
-function searchHistory() {
-  var searchBtn = document.createElement("button");
-  var enteredTxt = document.getElementById("input").value;
-  searchBtn.setAttribute("class", "btn btn-secondary btn-lg col mb-2");
-  searchBtn.setAttribute("id", "itemBtn");
-  searchBtn.setAttribute("type", "button");
-  searchBtn.textContent = enteredTxt.charAt(0).toUpperCase() + enteredTxt.slice(1);
-  historyContainer.append(searchBtn);
-}
+//local storage 
+// function storeCities(){
+//   localStorage.setItem("Cities Searched", JSON.stringify(searchedCities));
+//   console.log(searchedCities);
+//   // localStorage.getItem("Cities Searched", JSON.stringify(searchedCities));
+// }
 
-function history(){
-  var itemHistory = document.getElementById('itemBtn');
-  console.log(itemHistory);
-}
-history();  
+$('#history').on('click','.prev-search', function(){
+  city = $(this).text();
+  // console.log($(this).text());
+  // var enteredTxt = document.getElementById("input").value;
+  getApi(city);
+});
