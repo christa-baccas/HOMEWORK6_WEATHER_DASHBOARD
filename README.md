@@ -1,4 +1,4 @@
-# HOMEWORK6_WEATHER_DASHBOARD
+# WEATHER_DASHBOARD
 # Description
 The purpose of this project was to create a weather dashboard that updates the weather
 - When user searches for a city the API calls another API that calls for the lat and lon of a location
